@@ -97,11 +97,11 @@ func NotFoundError() *Error {
 	}
 }
 
-func UndefineError() *Error {
+func UndefineError(message string) *Error {
 	return &Error{
 		StatusCode: http.StatusInternalServerError,
 		Code:       UNDEFINE_ERROR,
-		Message:    "Undefined error.",
+		Message:    message,
 	}
 }
 
