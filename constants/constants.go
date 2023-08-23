@@ -84,14 +84,14 @@ const (
 	FREQUENT        CreateVerificationResult = "FREQUENT"
 )
 
-type HttpBodyType string
+type HttpBodyForm string
 
 const (
-	RAW                   HttpBodyType = "RAW"
-	X_WWW_FORM_URLENCODED HttpBodyType = "X_WWW_FORM_URLENCODED"
+	RAW                   HttpBodyForm = "RAW"
+	X_WWW_FORM_URLENCODED HttpBodyForm = "X_WWW_FORM_URLENCODED"
 )
 
-func (h HttpBodyType) Request() string {
+func (h HttpBodyForm) Request() string {
 	switch h {
 	case RAW:
 		return "raw"
