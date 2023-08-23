@@ -83,3 +83,37 @@ const (
 	SUCCESS_CREATED CreateVerificationResult = "SUCCESS_CREATED"
 	FREQUENT        CreateVerificationResult = "FREQUENT"
 )
+
+type HttpBodyType string
+
+const (
+	RAW                   HttpBodyType = "RAW"
+	X_WWW_FORM_URLENCODED HttpBodyType = "X_WWW_FORM_URLENCODED"
+)
+
+func (h HttpBodyType) Request() string {
+	switch h {
+	case RAW:
+		return "raw"
+	case X_WWW_FORM_URLENCODED:
+		return "x-www-form-urlencoded"
+	}
+	return ""
+}
+
+type ContentType string
+
+const (
+	JSON ContentType = "JSON"
+	XML  ContentType = "XML"
+)
+
+func (c ContentType) Request() string {
+	switch c {
+	case JSON:
+		return "application/json"
+	case XML:
+		return "application/xml"
+	}
+	return ""
+}
