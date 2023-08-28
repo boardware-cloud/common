@@ -16,9 +16,10 @@ func init() {
 
 type Claims struct {
 	jwt.StandardClaims
-	ID    string `json:"id"` // Account Id
-	Email string `json:"email"`
-	Role  string `json:"role"`
+	ID     string `json:"id"` // Account Id
+	Email  string `json:"email"`
+	Role   string `json:"role"`
+	Status string `json:"status"`
 }
 
 func NewClaims(id, email, role string, expiredAt int64) Claims {
