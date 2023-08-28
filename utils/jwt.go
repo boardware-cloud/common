@@ -22,17 +22,18 @@ type Claims struct {
 	Status string `json:"status"`
 }
 
-func NewClaims(id, email, role string, expiredAt int64) Claims {
+func NewClaims(id, email, role string, expiredAt int64, status string) Claims {
 	var c Claims
 	c.ID = id
 	c.Email = email
 	c.ExpiresAt = expiredAt
 	c.Role = role
+	c.Status = status
 	return c
 }
 
-func SignJwt(id, email, role string, expiredAt int64) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, NewClaims(id, email, role, expiredAt))
+func SignJwt(id, email, role string, expiredAt int64, status string) (string, error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, NewClaims(id, email, role, expiredAt, status))
 	tokenString, err := token.SignedString(secret)
 	return tokenString, err
 }
