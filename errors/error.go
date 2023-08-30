@@ -13,6 +13,7 @@ const (
 	UNATHORIZED_ERROR             Error_Code = 401
 	NOT_FOUND_ERROR               Error_Code = 404
 	PERMISSION_ERROR              Error_Code = 403
+	TOO_MANY_REQUESTS             Error_Code = 429
 	EMAIL_EXISTS_ERROR            Error_Code = 6002
 	AUTHENTICATION_ERROR          Error_Code = 6003
 	SERVICE_KEY_DUPLICATION_ERROR Error_Code = 6004
@@ -102,6 +103,14 @@ func UndefineError(message string) *Error {
 		StatusCode: http.StatusInternalServerError,
 		Code:       UNDEFINE_ERROR,
 		Message:    message,
+	}
+}
+
+func TooManyRequestsError() *Error {
+	return &Error{
+		StatusCode: http.StatusTooManyRequests,
+		Code:       TOO_MANY_REQUESTS,
+		Message:    "Too many requests.",
 	}
 }
 
