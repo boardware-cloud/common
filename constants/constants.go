@@ -76,6 +76,7 @@ const (
 	SET_PASSWORD   VerificationCodePurpose = "SET_PASSWORD"
 	CREATE_2FA     VerificationCodePurpose = "CREATE_2FA"
 	SIGNIN         VerificationCodePurpose = "SIGNIN"
+	TICKET         VerificationCodePurpose = "TICKET"
 )
 
 type CreateVerificationResult string
