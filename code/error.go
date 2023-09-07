@@ -14,6 +14,7 @@ var ErrTooManyRequests = errors.New("too many requests")
 var ErrEmailExists = errors.New("email exists")
 var ErrUndefined = errors.New("undefined error")
 var ErrVerificationCode = errors.New("verification code error")
+var ErrEnum = errors.New("enum parse error")
 
 type ErrorCode int
 

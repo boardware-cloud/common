@@ -1,5 +1,12 @@
 package constants
 
+import (
+	"database/sql/driver"
+	"fmt"
+
+	"github.com/boardware-cloud/common/code"
+)
+
 // Service type
 type ServiceType string
 
@@ -17,6 +24,30 @@ const (
 	ADMIN Role = "ADMIN"
 	USER  Role = "USER"
 )
+
+func RoleValidate(role string) bool {
+	switch Role(role) {
+	case ROOT, ADMIN, USER:
+		return true
+	}
+	return false
+}
+
+func (Role) GormDataType() string {
+	return "VARCHAR(128)"
+}
+
+func (s *Role) Scan(value any) error {
+	fmt.Println(value)
+	if RoleValidate(value.(string)) {
+		return nil
+	}
+	return code.ErrEnum
+}
+
+func (s Role) Value() (driver.Value, error) {
+	return []byte(s), nil
+}
 
 type TokenType string
 
