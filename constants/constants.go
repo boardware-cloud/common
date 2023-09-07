@@ -10,6 +10,15 @@ func (ServiceName) GormDataType() string {
 	return "VARCHAR(128)"
 }
 
+func (s *ServiceName) Scan(value any) error {
+	*s = ServiceName(string(value.([]byte)))
+	return nil
+}
+
+func (s ServiceName) Value() (driver.Value, error) {
+	return string(s), nil
+}
+
 const (
 	ARGUS ServiceName = "ARGUS"
 )
