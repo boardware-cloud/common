@@ -6,26 +6,26 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// 6XXX error code is defined boardware cloud.
-type Error_Code int
+// 6XXX error code is defined by boardware cloud.
+type ErrorCode int
 
 const (
-	UNATHORIZED_ERROR             Error_Code = 401
-	NOT_FOUND_ERROR               Error_Code = 404
-	PERMISSION_ERROR              Error_Code = 403
-	TOO_MANY_REQUESTS             Error_Code = 429
-	EMAIL_EXISTS_ERROR            Error_Code = 6002
-	AUTHENTICATION_ERROR          Error_Code = 6003
-	SERVICE_KEY_DUPLICATION_ERROR Error_Code = 6004
-	VERIFICATION_CODE_ERROR       Error_Code = 6005
-	VERIFICATION_CODE_FREQUENT    Error_Code = 6006
-	UNDEFINE_ERROR                Error_Code = 9999
+	UNATHORIZED_ERROR             ErrorCode = 401
+	NOT_FOUND_ERROR               ErrorCode = 404
+	PERMISSION_ERROR              ErrorCode = 403
+	TOO_MANY_REQUESTS             ErrorCode = 429
+	EMAIL_EXISTS_ERROR            ErrorCode = 6002
+	AUTHENTICATION_ERROR          ErrorCode = 6003
+	SERVICE_KEY_DUPLICATION_ERROR ErrorCode = 6004
+	VERIFICATION_CODE_ERROR       ErrorCode = 6005
+	VERIFICATION_CODE_FREQUENT    ErrorCode = 6006
+	UNDEFINE_ERROR                ErrorCode = 9999
 )
 
 type Error struct {
-	StatusCode int        `json:"statusCode"`
-	Code       Error_Code `json:"code"`
-	Message    string     `json:"message"`
+	StatusCode int       `json:"statusCode"`
+	Code       ErrorCode `json:"code"`
+	Message    string    `json:"message"`
 }
 
 func (err Error) GinHandler(c *gin.Context) {
