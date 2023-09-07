@@ -6,6 +6,10 @@ import (
 
 type ServiceName string
 
+func (ServiceName) GormDataType() string {
+	return "VARCHAR(128)"
+}
+
 const (
 	ARGUS ServiceName = "ARGUS"
 )
