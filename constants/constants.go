@@ -2,7 +2,6 @@ package constants
 
 import (
 	"database/sql/driver"
-	"fmt"
 
 	"github.com/boardware-cloud/common/code"
 )
@@ -38,7 +37,6 @@ func (Role) GormDataType() string {
 }
 
 func (s *Role) Scan(value any) error {
-	fmt.Println(value)
 	if RoleValidate(value.(string)) {
 		return nil
 	}
@@ -46,7 +44,7 @@ func (s *Role) Scan(value any) error {
 }
 
 func (s Role) Value() (driver.Value, error) {
-	return []byte(s), nil
+	return string(s), nil
 }
 
 type TokenType string
