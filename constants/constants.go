@@ -1,11 +1,5 @@
 package constants
 
-import (
-	"database/sql/driver"
-
-	"github.com/boardware-cloud/common/code"
-)
-
 // Service type
 type ServiceType string
 
@@ -36,16 +30,16 @@ func (Role) GormDataType() string {
 	return "VARCHAR(128)"
 }
 
-func (s *Role) Scan(value any) error {
-	if RoleValidate(value.(string)) {
-		return nil
-	}
-	return code.ErrEnum
-}
+// func (s *Role) Scan(value any) error {
+// 	if RoleValidate(value.(string)) {
+// 		return nil
+// 	}
+// 	return code.ErrEnum
+// }
 
-func (s Role) Value() (driver.Value, error) {
-	return string(s), nil
-}
+// func (s Role) Value() (driver.Value, error) {
+// 	return string(s), nil
+// }
 
 type TokenType string
 
