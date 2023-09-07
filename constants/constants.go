@@ -4,6 +4,12 @@ import (
 	"database/sql/driver"
 )
 
+type ServiceName string
+
+const (
+	ARGUS ServiceName = "ARGUS"
+)
+
 // Service type
 type ServiceType string
 
