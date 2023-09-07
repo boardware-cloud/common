@@ -35,6 +35,7 @@ func (Role) GormDataType() string {
 }
 
 func (s *Role) Scan(value any) error {
+	*s = ROOT
 	return nil
 	// if RoleValidate(value.(string)) {
 	// 	return nil
