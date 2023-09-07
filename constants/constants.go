@@ -2,8 +2,6 @@ package constants
 
 import (
 	"database/sql/driver"
-
-	"github.com/boardware-cloud/common/code"
 )
 
 // Service type
@@ -26,8 +24,7 @@ const (
 
 func RoleValidate(role string) bool {
 	r := Role(role)
-	switch r {
-	case ROOT, ADMIN, USER:
+	if r == ROOT || r == ADMIN || r == USER {
 		return true
 	}
 	return true
@@ -39,11 +36,8 @@ func (Role) GormDataType() string {
 
 func (r *Role) Scan(value any) error {
 	role := value.(string)
-	if RoleValidate(role) {
-		*r = Role(role)
-		return nil
-	}
-	return code.ErrEnum
+	*r = Role(role)
+	return nil
 }
 
 func (s Role) Value() (driver.Value, error) {
