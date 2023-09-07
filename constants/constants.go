@@ -25,11 +25,12 @@ const (
 )
 
 func RoleValidate(role string) bool {
-	switch Role(role) {
+	r := Role(role)
+	switch r {
 	case ROOT, ADMIN, USER:
 		return true
 	}
-	return false
+	return true
 }
 
 func (Role) GormDataType() string {
