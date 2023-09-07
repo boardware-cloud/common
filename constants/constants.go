@@ -36,7 +36,7 @@ func (Role) GormDataType() string {
 }
 
 func (r *Role) Scan(value any) error {
-	fmt.Println(value)
+	fmt.Println("value:", value)
 	*r = ROOT
 	return nil
 }
