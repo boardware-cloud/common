@@ -35,7 +35,6 @@ func (Role) GormDataType() string {
 }
 
 func (r *Role) Scan(value any) error {
-	// fmt.Println("value:", )
 	*r = Role(string(value.([]byte)))
 	return nil
 }
