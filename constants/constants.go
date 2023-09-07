@@ -2,6 +2,7 @@ package constants
 
 import (
 	"database/sql/driver"
+	"fmt"
 )
 
 // Service type
@@ -35,6 +36,7 @@ func (Role) GormDataType() string {
 }
 
 func (r *Role) Scan(value any) error {
+	fmt.Println(value)
 	*r = ROOT
 	return nil
 }
