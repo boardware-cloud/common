@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var ErrBadRequest = errors.New("bad request")
 var ErrUnauthorized = errors.New("unauthorized")
 var ErrPermissionDenied = errors.New("permission denied")
 var ErrNotFound = errors.New("not found")
@@ -19,6 +20,7 @@ var ErrEnum = errors.New("enum parse error")
 type ErrorCode int
 
 const (
+	BAD_REQUEST_ERROR             ErrorCode = http.StatusBadRequest
 	UNATHORIZED_ERROR             ErrorCode = 401
 	PERMISSION_ERROR              ErrorCode = 403
 	NOT_FOUND_ERROR               ErrorCode = 404
@@ -32,23 +34,29 @@ const (
 )
 
 func GetCode(err error) (statusCode int, errorCode ErrorCode) {
-	switch err {
-	case ErrUnauthorized:
+	switch {
+	case errors.Is(err, ErrBadRequest):
+		statusCode = http.StatusBadRequest
+		errorCode = BAD_REQUEST_ERROR
+	case errors.Is(err, ErrUnauthorized):
 		statusCode = http.StatusUnauthorized
 		errorCode = UNATHORIZED_ERROR
-	case ErrPermissionDenied:
+	case errors.Is(err, ErrPermissionDenied):
 		statusCode = http.StatusForbidden
 		errorCode = PERMISSION_ERROR
-	case ErrNotFound:
+	case errors.Is(err, ErrNotFound):
 		statusCode = http.StatusNotFound
 		errorCode = NOT_FOUND_ERROR
-	case ErrTooManyRequests:
+	case errors.Is(err, ErrTooManyRequests):
 		statusCode = http.StatusTooManyRequests
 		errorCode = TOO_MANY_REQUESTS
-	case ErrEmailExists:
+	case errors.Is(err, ErrEmailExists):
 		statusCode = http.StatusForbidden
 		errorCode = EMAIL_EXISTS_ERROR
-	case ErrUndefined:
+	case errors.Is(err, ErrUndefined):
+		statusCode = http.StatusInternalServerError
+		errorCode = UNDEFINE_ERROR
+	default:
 		statusCode = http.StatusInternalServerError
 		errorCode = UNDEFINE_ERROR
 	}
