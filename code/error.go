@@ -53,6 +53,9 @@ func GetCode(err error) (statusCode int, errorCode ErrorCode) {
 	case errors.Is(err, ErrEmailExists):
 		statusCode = http.StatusForbidden
 		errorCode = EMAIL_EXISTS_ERROR
+	case errors.Is(err, ErrVerificationCode):
+		statusCode = http.StatusPreconditionFailed
+		errorCode = VERIFICATION_CODE_ERROR
 	case errors.Is(err, ErrUndefined):
 		statusCode = http.StatusInternalServerError
 		errorCode = UNDEFINE_ERROR

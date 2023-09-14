@@ -1,79 +1,5 @@
 package constants
 
-import (
-	"database/sql/driver"
-)
-
-type ServiceName string
-
-func (ServiceName) GormDataType() string {
-	return "VARCHAR(128)"
-}
-
-func (s *ServiceName) Scan(value any) error {
-	*s = ServiceName(string(value.([]byte)))
-	return nil
-}
-
-func (s ServiceName) Value() (driver.Value, error) {
-	return string(s), nil
-}
-
-const (
-	ARGUS ServiceName = "ARGUS"
-)
-
-// Service type
-type ServiceType string
-
-const (
-	SAAS ServiceType = "SAAS"
-	PAAS ServiceType = "PAAS"
-	IAAS ServiceType = "IAAS"
-)
-
-// Account type
-type Role string
-
-const (
-	ROOT  Role = "ROOT"
-	ADMIN Role = "ADMIN"
-	USER  Role = "USER"
-)
-
-func RoleValidate(role string) bool {
-	r := Role(role)
-	if r == ROOT || r == ADMIN || r == USER {
-		return true
-	}
-	return true
-}
-
-func (Role) GormDataType() string {
-	return "VARCHAR(128)"
-}
-
-func (r *Role) Scan(value any) error {
-	*r = Role(string(value.([]byte)))
-	return nil
-}
-
-func (s Role) Value() (driver.Value, error) {
-	return string(s), nil
-}
-
-type TokenType string
-
-const (
-	JWT TokenFormat = "JWT"
-)
-
-type TokenFormat string
-
-const (
-	BEARER TokenType = "BEARER"
-)
-
 type HttpMehotd string
 
 const (
@@ -111,16 +37,6 @@ type NotificationType string
 
 const (
 	EMAIL NotificationType = "EMAIL"
-)
-
-type VerificationCodePurpose string
-
-const (
-	CREATE_ACCOUNT VerificationCodePurpose = "CREATE_ACCOUNT"
-	SET_PASSWORD   VerificationCodePurpose = "SET_PASSWORD"
-	CREATE_2FA     VerificationCodePurpose = "CREATE_2FA"
-	SIGNIN         VerificationCodePurpose = "SIGNIN"
-	TICKET         VerificationCodePurpose = "TICKET"
 )
 
 type CreateVerificationResult string

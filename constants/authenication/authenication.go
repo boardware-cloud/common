@@ -1,6 +1,6 @@
 package authenication
 
-import "errors"
+import errorCode "github.com/boardware-cloud/common/code"
 
 type AuthenticationFactor string
 
@@ -11,10 +11,15 @@ const (
 	EMAIL    AuthenticationFactor = "EMAIL"
 )
 
+func (AuthenticationFactor) GormDataType() string {
+	return "VARCHAR(128)"
+}
+
 func ToAuthenticationFactor(s string) (AuthenticationFactor, error) {
 	factor := AuthenticationFactor(s)
-	if factor != PASSWORD && factor != TOTP && factor != WEBAUTHN && factor != EMAIL {
-		return "", errors.New("enum error")
+	switch factor {
+	case PASSWORD, TOTP, WEBAUTHN, EMAIL:
+		return factor, nil
 	}
-	return factor, nil
+	return factor, errorCode.ErrEnum
 }
