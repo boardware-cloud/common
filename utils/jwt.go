@@ -4,14 +4,21 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/boardware-cloud/common/config"
 	"github.com/golang-jwt/jwt"
+	"github.com/spf13/viper"
 )
 
 var secret []byte
 
 func init() {
-	secret = []byte(config.GetString("jwt.secret"))
+	viper.SetConfigName("env")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./config")
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(err)
+	}
+	secret = []byte(viper.GetString("jwt.secret"))
 }
 
 type Claims struct {
