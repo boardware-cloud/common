@@ -15,7 +15,8 @@ const (
 type MonitorType string
 
 const (
-	HTTP MonitorType = "HTTP"
+	HTTP MonitorType   = "HTTP"
+	PING MonitorStatus = "PING"
 )
 
 type MonitoringResult string
