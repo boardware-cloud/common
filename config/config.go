@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-func init() {
+func Init() {
 	viper.SetConfigName("env") // name of config file (without extension)
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("./config") // optionally look for config in the working directory
