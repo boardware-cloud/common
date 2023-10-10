@@ -7,10 +7,10 @@ import (
 )
 
 func Init() {
-	viper.SetConfigName("env") // name of config file (without extension)
+	viper.SetConfigName("env")
 	viper.SetConfigType("yaml")
-	viper.AddConfigPath("./config") // optionally look for config in the working directory
-	viper.ReadInConfig()            // Find and read the config file
+	viper.AddConfigPath("./config")
+	viper.ReadInConfig()
 }
 
 func GetString(s string) string {
