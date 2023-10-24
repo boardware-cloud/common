@@ -48,17 +48,17 @@ func SignJwt(id, email, role string, expiredAt int64, status string) (string, er
 func VerifyJwt(tokenString string) (jwt.MapClaims, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
 		return secret, nil
 	})
 
 	if token == nil || err != nil {
-		return nil, errors.New("Unvalid token")
+		return nil, errors.New("unvalid token")
 	}
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		return claims, nil
 	} else {
-		return claims, errors.New("Unvalid token")
+		return claims, errors.New("unvalid token")
 	}
 }
