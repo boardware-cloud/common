@@ -10,7 +10,7 @@ import (
 
 var secret []byte
 
-func init() {
+func Init() {
 	viper.SetConfigName("env")
 	viper.SetConfigType("yaml")
 	viper.AddConfigPath("./config")
