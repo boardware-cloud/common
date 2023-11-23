@@ -5,7 +5,23 @@ import (
 	"fmt"
 	"net/smtp"
 	"strings"
+
+	"github.com/boardware-cloud/common/config"
 )
+
+var emailSender *Sender
+
+func GetEmailSender() *Sender {
+	if emailSender == nil {
+		emailSender = &Sender{
+			SmtpHost: config.GetString("smtp.host"),
+			Email:    config.GetString("smtp.port"),
+			Password: config.GetString("smtp.email"),
+			Port:     config.GetString("smtp.password"),
+		}
+	}
+	return emailSender
+}
 
 type loginAuth struct {
 	username, password string
