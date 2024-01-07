@@ -23,6 +23,13 @@ func GetString(s string) string {
 	return ""
 }
 
+func GetStringWithConvention(s string, def string) string {
+	if value := GetString(s); value != "" {
+		return value
+	}
+	return def
+}
+
 func Convention[T any](value *T, def T) T {
 	if value == nil {
 		return def
