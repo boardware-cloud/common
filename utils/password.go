@@ -63,7 +63,7 @@ func HashWithSalt(password string) (string, []byte) {
 }
 
 // Check if two passwords match
-func PasswordsMatch(hashedPassword, currPassword string,
+func VerifiyPassword(hashedPassword, currPassword string,
 	salt []byte) bool {
 	var currPasswordHash = HashPassword(currPassword, salt)
 	return hashedPassword == currPasswordHash
